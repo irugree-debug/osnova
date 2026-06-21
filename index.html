@@ -127,7 +127,7 @@ cef.on("game:data:playerStats", (hp, max_hp, arm, breath, wanted, weapon, ammo, 
         weaponAmmo = `${ammo}/${(max_ammo - ammo)}`;
     }
 
-   let speed_count = Math.round(speed);
+   speed_count = Math.round(speed * 1.4);
     
     // 2. Выводим чистое значение скорости в текст
     document.getElementById("speed-count").innerHTML = `${speed_count}`;
