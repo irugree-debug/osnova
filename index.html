@@ -127,7 +127,6 @@ cef.on("game:data:playerStats", (hp, max_hp, arm, breath, wanted, weapon, ammo, 
         weaponAmmo = `${ammo}/${(max_ammo - ammo)}`;
     }
 
-   speed_count = Math.round(speed * 1.4);
     
     // 2. Выводим чистое значение скорости в текст
     document.getElementById("speed-count").innerHTML = `${speed_count}`;
@@ -135,12 +134,14 @@ cef.on("game:data:playerStats", (hp, max_hp, arm, breath, wanted, weapon, ammo, 
     // 3. Пересчитываем шкалу (meter) под максимум 222 км/ч
     // 625 - это стартовое положение, 385 - это примерный ход стрелки (625 - 240)
     // Коэффициент 1.73 (385 / 222) обеспечит заполнение шкалы ровно до 222 км/ч
-    let meter_count = 625 - (speed * 1.73); 
+    let meter_count = 625 - (speed * 1.73);
 
     // Защита: чтобы шкала не уходила "в минус" при скорости выше 222
     if (meter_count < 240) meter_count = 240; 
-    
     document.getElementById("speed-meter").style.strokeDashoffset = meter_count;
+    
+    speed_count = Math.round(speed); 
+    document.getElementById("speed-count").innerHTML = speed_count;
 
     document.getElementById('weapon_id').src = `icon/weapon/gun_${weaponID}.png`;
     document.getElementById('weapon_ammo').innerHTML = weaponAmmo;
