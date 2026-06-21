@@ -477,4 +477,11 @@
     font-weight: 600;
     line-height: normal;
 }
+    #speed-meter {
+    /* Это уберет задержку, стрелка станет мгновенной */
+    transition: stroke-dashoffset 0.05s linear !important; 
+    /* Убедимся, что она правильно отрисовывается */
+    stroke: #00FF66; /* Выбери нужный цвет стрелки */
+    stroke-width: 5px;
+}
 }
