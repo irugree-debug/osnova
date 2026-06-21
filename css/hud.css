@@ -205,8 +205,8 @@
   will-change: auto;
   stroke-width: 0.2vh;
   stroke-miterlimit: round;
-  -webkit-transition: stroke-dashoffset 450ms ease-in-out;
-  transition: stroke-dashoffset 450ms ease-in-out;
+  -webkit-transition: stroke-dashoffset 100ms ease-in-out;
+  transition: stroke-dashoffset 100ms ease-in-out;
 }
 .modern-cefstudio-speed .speed-bg .speed path.speed-meter-bg {
   stroke-width: 0.1vh;
