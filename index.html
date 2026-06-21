@@ -122,26 +122,23 @@ cef.on("game:data:playerStats", (hp, max_hp, arm, breath, wanted, weapon, ammo, 
 
     var weaponID = weapon;
     var weaponAmmo = '';
-
     if (weaponID !== '0') {
         weaponAmmo = `${ammo}/${(max_ammo - ammo)}`;
     }
 
+    // 1. Округляем скорость
+    let speed_val = Math.round(speed);
     
-    // 2. Выводим чистое значение скорости в текст
-    document.getElementById("speed-count").innerHTML = `${speed_count}`;
+    // 2. ВЫВОДИМ СКОРОСТЬ В ЦИФРАХ (сюда можно добавить множитель, если сервер присылает мало)
+    // Если нужно, чтобы при 159 показывало 222, умножай на 1.4:
+    let display_speed = Math.round(speed_val * 1.4); 
+    document.getElementById("speed-count").innerHTML = display_speed;
 
-    // 3. Пересчитываем шкалу (meter) под максимум 222 км/ч
-    // 625 - это стартовое положение, 385 - это примерный ход стрелки (625 - 240)
-    // Коэффициент 1.73 (385 / 222) обеспечит заполнение шкалы ровно до 222 км/ч
-    let meter_count = 625 - (speed * 1.73);
-
-    // Защита: чтобы шкала не уходила "в минус" при скорости выше 222
+    // 3. РАСЧЕТ ШКАЛЫ
+    // 625 - старт, 240 - конец (при 222 км/ч)
+    let meter_count = 625 - (speed_val * 1.73);
     if (meter_count < 240) meter_count = 240; 
     document.getElementById("speed-meter").style.strokeDashoffset = meter_count;
-    
-    speed_count = Math.round(speed); 
-    document.getElementById("speed-count").innerHTML = speed_count;
 
     document.getElementById('weapon_id').src = `icon/weapon/gun_${weaponID}.png`;
     document.getElementById('weapon_ammo').innerHTML = weaponAmmo;
